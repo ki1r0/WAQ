@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "format": "robotwin_federated_episode_text_v1",
+  "federated_catalog": "/path/to/mnt/datasets/reward_ablation/configs/robotwin4_federated_catalog.json",
+  "federated_catalog_sha256": "d51ee90b3e541cfc5ae7d74441244a2a16339c204899cec0edc4a6942b9c010c",
+  "text_embed_dim": 4096,
+  "max_tokens": 53,
+  "embedding_source": "stored_episode_text_emb",
+  "text_encoder_provenance": "/path/to/home/wy/giga/weight/lingbot-va-posttrain-robotwin/text_encoder",
+  "tokenizer": "/path/to/home/wy/giga/weight/lingbot-va-posttrain-robotwin/tokenizer",
+  "sources": [
+    {
+      "source_id": 0,
+      "task_name": "adjust_bottle",
+      "datasets": [
+        {
+          "local_dataset_id": 0,
+          "split": "aug",
+          "episode_count": 500,
+          "file": "/path/to/mnt2/robotwin_language_sidecar_rw50_exact_20260802/source-00/dataset-000000.safetensors",
+          "sha256": "f6d199707c0ddd96fc25d8d58d3649b76ebaadcc6e7c80ccb89f141904db4010",
+          "source_dataset": "/path/to/home/wy/giga/dataset/lingbot-robotwin-clean-and-aug-lerobot/robotwin-clean-and-aug-lerobot/lerobot_robotwin_eef_aug_500/adjust_bottle-aloha-agilex_randomized_500-1000",
+          "source_episodes_sha256": "b38fd900a403efce22dbea2d855a13dc0363f8e88f72e70a211acf3297f36b40"
+        },
+        {
+          "local_dataset_id": 1,
+          "split": "clean",
+          "episode_count": 50,
+          "file": "/path/to/mnt2/robotwin_language_sidecar_rw50_exact_20260802/source-00/dataset-000001.safetensors",
+          "sha256": "e5039b6f46be329e6e9e097b59979c6083fe38584713c2908ae8a589c8eaab61",
+          "source_dataset": "/path/to/home/wy/giga/dataset/lingbot-robotwin-clean-and-aug-lerobot/robotwin-clean-and-aug-lerobot/lerobot_robotwin_eef_clean_50/adjust_bottle-demo_clean_collect_200-50",
+          "source_episodes_sha256": "ebf618bf2eaa982d8ba31b5c136ff9e88fcc72d7d832a316df79823c1fcb6599"
+        }
+      ]
+    },
+    {
+      "source_id": 6,
+      "task_name": "dump_bin_bigbin",
+      "datasets": [
+        {
+          "local_dataset_id": 0,
+          "split": "aug",
+          "episode_count": 500,
+          "file": "/path/to/mnt2/robotwin_language_sidecar_rw50_exact_20260802/source-06/dataset-000000.safetensors",
+          "sha256": "8405ee651589c5f9e5e143d72c8dbc071e19aa7e73391534157842530b7dbee6",
+          "source_dataset": "/path/to/home/wy/giga/dataset/lingbot-robotwin-clean-and-aug-lerobot/robotwin-clean-and-aug-lerobot/lerobot_robotwin_eef_aug_500/dump_bin_bigbin-aloha-agilex_randomized_500-1000",
+          "source_episodes_sha256": "c1c6e638cfca9784c2967f62fbd0694aad3c418b09972609bde878509acc17f8"
+        },
+        {
+          "local_dataset_id": 1,
+          "split": "clean",
+          "episode_count": 50,
+          "file": "/path/to/mnt2/robotwin_language_sidecar_rw50_exact_20260802/source-06/dataset-000001.safetensors",
+          "sha256": "f426158b5293cecd6eab9b7551347d8cfa6f648ea91f8d7fd3475d24a1382b1e",
+          "source_dataset": "/path/to/home/wy/giga/dataset/lingbot-robotwin-clean-and-aug-lerobot/robotwin-clean-and-aug-lerobot/lerobot_robotwin_eef_clean_50/dump_bin_bigbin-demo_clean_collect_200-50",
+          "source_episodes_sha256": "12118a05329d1e1a23281990d244da6348f32817e90860c4602c599e5780a805"
+        }
+      ]
+    },
+    {
+      "source_id": 10,
+      "task_name": "hanging_mug",
+      "datasets": [
+        {
+          "local_dataset_id": 0,
+          "split": "aug",
+          "episode_count": 500,
+          "file": "/path/to/mnt2/robotwin_language_sidecar_rw50_exact_20260802/source-10/dataset-000000.safetensors",
+          "sha256": "2ee2844ce3b10e26e2d148fcfd1d30b46f85bbc48105157d17f5cd87651539ba",
+          "source_dataset": "/path/to/home/wy/giga/dataset/lingbot-robotwin-clean-and-aug-lerobot/robotwin-clean-and-aug-lerobot/lerobot_robotwin_eef_aug_500/hanging_mug-aloha-agilex_randomized_500-1000",
+          "source_episodes_sha256": "58b51b6bf7a8d27f4ff66bb7387cfd586b0c019b530b6eadcbc007014f5f87db"
+        },
+        {
+          "local_dataset_id": 1,
+          "split": "clean",
+          "episode_count": 50,
+          "file": "/path/to/mnt2/robotwin_language_sidecar_rw50_exact_20260802/source-10/dataset-000001.safetensors",
+          "sha256": "e9e130023b60653ad34e81a8333d712b8cd284180f325d40156c56b606293577",
+          "source_dataset": "/path/to/home/wy/giga/dataset/lingbot-robotwin-clean-and-aug-lerobot/robotwin-clean-and-aug-lerobot/lerobot_robotwin_eef_clean_50/hanging_mug-demo_clean_collect_200-50",
+          "source_episodes_sha256": "bb5a19161091aad7a4abb3d862bf4add40586b2982583e2e583973e91ee23986"
+        }
+      ]
+    },
+    {
+      "source_id": 49,
+      "task_name": "turn_switch",
+      "datasets": [
+        {
+          "local_dataset_id": 0,
+          "split": "aug",
+          "episode_count": 500,
+          "file": "/path/to/mnt2/robotwin_language_sidecar_rw50_exact_20260802/source-49/dataset-000000.safetensors",
+          "sha256": "762b7a27634f06772893c774ce83ce678adc70e5a6606b25e96163fc65b6de2e",
+          "source_dataset": "/path/to/home/wy/giga/dataset/lingbot-robotwin-clean-and-aug-lerobot/robotwin-clean-and-aug-lerobot/lerobot_robotwin_eef_aug_500/turn_switch-aloha-agilex_randomized_500-1000",
+          "source_episodes_sha256": "0d19c4ffe13d782ea453da2f156a9a92648b7b24270ac73e7f4089c7b193985c"
+        },
+        {
+          "local_dataset_id": 1,
+          "split": "clean",
+          "episode_count": 50,
+          "file": "/path/to/mnt2/robotwin_language_sidecar_rw50_exact_20260802/source-49/dataset-000001.safetensors",
+          "sha256": "bc25acfe6749f9614dc8772f346cbf4ab45e124d4506a50e80187c1a3a76e04b",
+          "source_dataset": "/path/to/home/wy/giga/dataset/lingbot-robotwin-clean-and-aug-lerobot/robotwin-clean-and-aug-lerobot/lerobot_robotwin_eef_clean_50/turn_switch-demo_clean_collect_200-50",
+          "source_episodes_sha256": "d9a223dadc6f857d3758f222059b8f7c29e1b4b3e3e1d9a99a95bfe9410e68f1"
+        }
+      ]
+    }
+  ]
+}

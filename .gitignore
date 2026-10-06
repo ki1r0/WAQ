@@ -1,0 +1,29 @@
+# Credentials and local-only configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Generated training/evaluation artifacts
+__pycache__/
+*.py[cod]
+*.log
+wandb/
+outputs/
+checkpoints/
+**/checkpoints/
+cache/
+**/cache/
+data/
+datasets/
+videos/
+*.mp4
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.ckpt
+*.safetensors

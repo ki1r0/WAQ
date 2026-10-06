@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "cache_format": "phase3_federated_canonical_episode",
+  "run_contract": {
+    "name": "robotwin4_reward_ablation_20260913",
+    "source_selection": [
+      "adjust_bottle",
+      "dump_bin_bigbin",
+      "hanging_mug",
+      "turn_switch"
+    ],
+    "id_contract": "Transition IDs are contiguous offsets in the four-source view; global dataset IDs preserve the original RobotWin-50 provenance.",
+    "cache_contract": "Each source is an immutable view of the existing RobotWin-50 compact-8 canonical episode cache; no episode payload is rewritten."
+  },
+  "task_count": 4,
+  "episode_count": 2200,
+  "transition_count": 15190,
+  "missing_tasks": [],
+  "sources": [
+    {
+      "source_id": 0,
+      "task_name": "adjust_bottle",
+      "base_config_name": "robotwin_place_can_basket_official_dataset",
+      "cache_dir": "/path/to/mnt4/robotwin_phase3_cache_mt50_compact8_20260729/adjust_bottle",
+      "manifest_sha256": "2b096018fd43643afdfec36a25e3db758d39bf4ca34d83ae12a3b0fbc264a130",
+      "transition_idx_offset": 0,
+      "transition_count": 2775,
+      "datasets": [
+        {
+          "local_dataset_id": 0,
+          "global_dataset_id": 0,
+          "split": "aug",
+          "episode_count": 500
+        },
+        {
+          "local_dataset_id": 1,
+          "global_dataset_id": 1,
+          "split": "clean",
+          "episode_count": 50
+        }
+      ]
+    },
+    {
+      "source_id": 6,
+      "task_name": "dump_bin_bigbin",
+      "base_config_name": "robotwin_place_can_basket_official_dataset",
+      "cache_dir": "/path/to/mnt4/robotwin_phase3_cache_mt50_compact8_20260729/dump_bin_bigbin",
+      "manifest_sha256": "c464a0a432bfb26a6d915c1c41e46a8b385e1b4906d499771671a4a0836c7349",
+      "transition_idx_offset": 2775,
+      "transition_count": 4397,
+      "datasets": [
+        {
+          "local_dataset_id": 0,
+          "global_dataset_id": 12,
+          "split": "aug",
+          "episode_count": 500
+        },
+        {
+          "local_dataset_id": 1,
+          "global_dataset_id": 13,
+          "split": "clean",
+          "episode_count": 50
+        }
+      ]
+    },
+    {
+      "source_id": 10,
+      "task_name": "hanging_mug",
+      "base_config_name": "robotwin_place_can_basket_official_dataset",
+      "cache_dir": "/path/to/mnt4/robotwin_phase3_cache_mt50_compact8_20260729/hanging_mug",
+      "manifest_sha256": "6f5101182d8709d46f1696b9282ba6f2211702d06e60ac9cbf0e0c416de13b03",
+      "transition_idx_offset": 7172,
+      "transition_count": 6080,
+      "datasets": [
+        {
+          "local_dataset_id": 0,
+          "global_dataset_id": 20,
+          "split": "aug",
+          "episode_count": 500
+        },
+        {
+          "local_dataset_id": 1,
+          "global_dataset_id": 21,
+          "split": "clean",
+          "episode_count": 50
+        }
+      ]
+    },
+    {
+      "source_id": 49,
+      "task_name": "turn_switch",
+      "base_config_name": "robotwin_place_can_basket_official_dataset",
+      "cache_dir": "/path/to/mnt4/robotwin_phase3_cache_mt50_compact8_20260729/turn_switch",
+      "manifest_sha256": "f76a62257e1bea88fa1755471ca609eca339e14f5a7c6ea5adebad72e6b460a5",
+      "transition_idx_offset": 13252,
+      "transition_count": 1938,
+      "datasets": [
+        {
+          "local_dataset_id": 0,
+          "global_dataset_id": 98,
+          "split": "aug",
+          "episode_count": 500
+        },
+        {
+          "local_dataset_id": 1,
+          "global_dataset_id": 99,
+          "split": "clean",
+          "episode_count": 50
+        }
+      ]
+    }
+  ]
+}

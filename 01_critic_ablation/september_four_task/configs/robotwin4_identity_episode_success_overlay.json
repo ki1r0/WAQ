@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "format": "phase3_episode_success_overlay_v1",
+  "mode": "identity",
+  "federated_catalog_sha256": "d51ee90b3e541cfc5ae7d74441244a2a16339c204899cec0edc4a6942b9c010c",
+  "source_manifest_sha256_by_source": {
+    "0": "2b096018fd43643afdfec36a25e3db758d39bf4ca34d83ae12a3b0fbc264a130",
+    "6": "c464a0a432bfb26a6d915c1c41e46a8b385e1b4906d499771671a4a0836c7349",
+    "10": "6f5101182d8709d46f1696b9282ba6f2211702d06e60ac9cbf0e0c416de13b03",
+    "49": "f76a62257e1bea88fa1755471ca609eca339e14f5a7c6ea5adebad72e6b460a5"
+  },
+  "source_defaults": {},
+  "episode_overrides": []
+}
