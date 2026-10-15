@@ -1,0 +1,110 @@
+diff --git a/openwam/deploy/engine.py b/openwam/deploy/engine.py
+index fae7aec..dc89cee 100644
+--- a/openwam/deploy/engine.py
++++ b/openwam/deploy/engine.py
+@@ -112,0 +113 @@ class JointInferenceEngine(BaseInferenceEngine):
++        self.action_velocity_guidance: Optional[Any] = None
+@@ -335,25 +336,27 @@ class JointInferenceEngine(BaseInferenceEngine):
+-        generate_kwargs = self._filter_architecture_generate_kwargs(
+-            {
+-                "schedule": schedule,
+-                "prompt": conditions.get("prompt", ""),
+-                "vace_video": conditions.get("vace_video", None),
+-                "first_frame_image": conditions.get("first_frame_image", None),
+-                "num_frames": video_num_frames,
+-                "action_num_frames": action_num_frames,
+-                "height": conditions.get("height", getattr(inf_cfg, "height", 384)),
+-                "width": conditions.get("width", getattr(inf_cfg, "width", 320)),
+-                "seed": conditions.get("seed", 42),
+-                "tiled": conditions.get("tiled", True),
+-                "input_video_latents": conditions.get("input_video_latents", None),
+-                "num_inference_steps": denoise_steps,
+-                "shift": shift,
+-                "dit_cache": self._dit_cache,
+-                "decode_video": self._decode_video,
+-                "profile": self._profile,
+-                "vace_cache": self._vace_cache,
+-                "prompt_embed_cache": self._prompt_embed_cache,
+-                "proprio": proprio,
+-                "cfg_scale": self._cfg_scale,
+-                "cfg_merge": self._cfg_merge,
+-            }
+-        )
++        architecture_kwargs = {
++            "schedule": schedule,
++            "prompt": conditions.get("prompt", ""),
++            "vace_video": conditions.get("vace_video", None),
++            "first_frame_image": conditions.get("first_frame_image", None),
++            "num_frames": video_num_frames,
++            "action_num_frames": action_num_frames,
++            "height": conditions.get("height", getattr(inf_cfg, "height", 384)),
++            "width": conditions.get("width", getattr(inf_cfg, "width", 320)),
++            "seed": conditions.get("seed", 42),
++            "tiled": conditions.get("tiled", True),
++            "input_video_latents": conditions.get("input_video_latents", None),
++            "num_inference_steps": denoise_steps,
++            "shift": shift,
++            "dit_cache": self._dit_cache,
++            "decode_video": self._decode_video,
++            "profile": self._profile,
++            "vace_cache": self._vace_cache,
++            "prompt_embed_cache": self._prompt_embed_cache,
++            "proprio": proprio,
++            "cfg_scale": self._cfg_scale,
++            "cfg_merge": self._cfg_merge,
++        }
++        action_velocity_guidance = getattr(self, "action_velocity_guidance", None)
++        if action_velocity_guidance is not None:
++            architecture_kwargs["action_velocity_guidance"] = action_velocity_guidance
++        generate_kwargs = self._filter_architecture_generate_kwargs(architecture_kwargs)
+diff --git a/openwam/deploy/server.py b/openwam/deploy/server.py
+index 0ca303b..41b8fba 100644
+--- a/openwam/deploy/server.py
++++ b/openwam/deploy/server.py
+@@ -50 +50 @@ from pathlib import Path
+-from typing import Optional
++from typing import Callable, Optional
+@@ -620 +620,5 @@ def _apply_inference_overrides(cfg, args):
+-def main(argv: Optional[list[str]] = None):
++def main(
++    argv: Optional[list[str]] = None,
++    *,
++    server_builder: Optional[Callable[..., PolicyServer]] = None,
++):
+@@ -661 +665,2 @@ def main(argv: Optional[list[str]] = None):
+-    server = build_server_from_config(
++    builder = server_builder or build_server_from_config
++    server = builder(
+diff --git a/openwam/model/architectures/base.py b/openwam/model/architectures/base.py
+index e4df6c1..5708788 100644
+--- a/openwam/model/architectures/base.py
++++ b/openwam/model/architectures/base.py
+@@ -1398,0 +1399 @@ class BaseWAMArchitecture(ABC, nn.Module):
++        action_velocity_guidance: Optional[Any] = None,
+@@ -1417,0 +1419,4 @@ class BaseWAMArchitecture(ABC, nn.Module):
++            action_velocity_guidance: Optional deploy hook implementing
++                ``begin_generation`` and ``apply``. It is called with the actual
++                denoising-loop index after fresh or cached action predictions are
++                selected, immediately before the action update.
+@@ -1516,0 +1522,10 @@ class BaseWAMArchitecture(ABC, nn.Module):
++        guidance_context = None
++        if action_velocity_guidance is not None:
++            guidance_context = action_velocity_guidance.begin_generation(
++                architecture=self,
++                schedule=schedule,
++                prompt=prompt,
++                first_frame_image=first_frame_image,
++                proprio=proprio,
++            )
++
+@@ -1585,0 +1601,10 @@ class BaseWAMArchitecture(ABC, nn.Module):
++                if action_velocity_guidance is not None:
++                    # Apply guidance after selecting a fresh or cached prediction
++                    # so cache hits use the same true schedule index as recomputes.
++                    action_noise_pred = action_velocity_guidance.apply(
++                        context=guidance_context,
++                        step_index=i,
++                        sigma=sigma_a,
++                        action_latents=action_latents,
++                        action_velocity=action_noise_pred,
++                    )

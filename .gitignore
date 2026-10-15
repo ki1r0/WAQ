@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+/evaluation/openWAM_c2r/run.env
 *.pem
 *.key
 id_rsa*
